@@ -122,6 +122,7 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
+              "createMode":"inline",
               "editableHeaderContent": false,
               "contextPath": "/Student"
             }

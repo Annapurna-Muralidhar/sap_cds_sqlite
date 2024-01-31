@@ -23,6 +23,8 @@ entity Student : cuid, managed {
     dob: Date @mandatory;
     @title:'Course'
     course : Association to Courses;
+    @title: 'Languages Known'
+    Languages: Composition of many StudentLanguages on Languages.studentid = $self;
     @title:'Age'
     virtual age:Integer @Core.Computed;
     @title:'Gender Desc'
@@ -32,6 +34,12 @@ entity Student : cuid, managed {
 
 // @mandatory makes the input mandatory
 //if the schema structure is changed redeploy usingcds deploy --to sqlite command
+
+entity StudentLanguages: managed,cuid {
+    studentid: Association to Student;
+    langid: Association to Languages;
+}
+
 
 @cds.persistence.skip
 entity Gender {
@@ -46,5 +54,23 @@ entity Courses : cuid, managed {
     code: String(3);
     @title: 'Description'
     description: String(50);
+    Books: Composition of many {
+        key ID: UUID;
+        bookid:Association to Books;
+    }
     
+}
+
+entity Languages: cuid, managed {
+    @title: 'Code'
+    code: String(2);
+    @title: 'Description'
+    description: String(20);
+}
+
+entity Books : cuid,managed{
+    @title:'Code'
+    code:String(5);
+    @title:'Description'
+    description:String(20);
 }
