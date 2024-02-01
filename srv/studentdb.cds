@@ -69,7 +69,7 @@ annotate StudentDB.Courses.Books with @(
         $Type : 'UI.FieldGroupType',
         Data : [
             {
-                Value : book_ID,
+                Value : bookid_ID,
             }
         ],
     },
@@ -166,7 +166,7 @@ annotate StudentDB.Courses with @(
             {
                 Value : code,
             },
-            
+
             {
                 Value : description,
             }
@@ -175,8 +175,8 @@ annotate StudentDB.Courses with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'StudentInfoFacet',
-            Label : 'Student Information',
+            ID : 'CourseInfoFacet',
+            Label : 'Course Information',
             Target : '@UI.FieldGroup#CourseInformation',
         },
          {
