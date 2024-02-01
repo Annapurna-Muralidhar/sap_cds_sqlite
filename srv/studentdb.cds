@@ -76,8 +76,8 @@ annotate StudentDB.Courses.Books with @(
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'BooksFacet',
-            Label : 'Books',
+            ID : 'CourseBooksFacet',
+            Label : 'CourseBooks',
             Target : '@UI.FieldGroup#CourseBooks',
         },
     ],
