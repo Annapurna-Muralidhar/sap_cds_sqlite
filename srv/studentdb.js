@@ -32,7 +32,7 @@ function getGenderDescription(genderCode) {
 
 module.exports = cds.service.impl(function () {
 
-    const { Student , Gender} = this.entities()//here Student  is same as mentioned entity in schema.cds
+    const { Student , Gender , Courses} = this.entities()//here Student  is same as mentioned entity in schema.cds
 
     this.on(['READ'], Student, async(req) => {
         results = await cds.run(req.query);
@@ -78,6 +78,26 @@ module.exports = cds.service.impl(function () {
             req.error({'code': 'STEMAILEXISTS',message:'Student with such email already exists', target: 'email_id'});
         }
 
+
+        const langs = req.data.Languages;
+    
+        for (let i = 0; i < langs.length; i++) {
+            const currentlang = langs[i];
+            const count = langs.filter(lang=> lang.langid_ID === currentlang.langid_ID).length;
+    
+            if (count > 1) {
+                req.error({
+                    'code': 'LANGEXISTS',
+                    'message': 'This language is already selected'
+                });
+                
+                break; 
+            }
+        }
+
+
+
+
     });
 
     this.before(['UPDATE'], Student, async(req) => {
@@ -88,8 +108,60 @@ module.exports = cds.service.impl(function () {
         if (result.length >0) {
             req.error({'code': 'STEMAILEXISTS',message:'Student with such email already exists', target: 'email_id'});
         }
+
+
+        const langs = req.data.Languages;
+    
+        for (let i = 0; i < langs.length; i++) {
+            const currentlang = langs[i];
+            const count = langs.filter(lang=> lang.langid_ID === currentlang.langid_ID).length;
+    
+            if (count > 1) {
+                req.error({
+                    'code': 'LANGEXISTS',
+                    'message': 'This language is already selected'
+                });
+                
+                break; 
+            }
+        }
+
+
+
+
     }
     });
+
+    
+
+    this.before(['CREATE', 'UPDATE'], Courses, async (req) => {
+        const books = req.data.Books;
+
+        for (let i = 0; i < books.length; i++) {
+            const currentBook = books[i];
+            const count = books.filter(book => book.bookid_ID === currentBook.bookid_ID).length;
+    
+            if (count > 1) {
+                req.error({
+                    'code': 'BOOKEXISTS',
+                    'message': 'This book is already selected'
+                });
+                
+                break; 
+            }
+        }
+    });
+
+
+    
+
+    
+    
+    
+
+
+
+
     this.on('READ',Gender,async(req)=>{
                 genders=[
                     {

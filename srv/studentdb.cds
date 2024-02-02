@@ -9,12 +9,14 @@ service StudentDB {
         ID,
         *
     };
-    entity Courses as projection on db.Courses{
+    entity Courses as projection on db.Courses
+    {
         @UI.Hidden: true
         ID,
         *
     };
-    entity Books as projection on db.Books{
+    entity Books as projection on db.Books
+    {
         @UI.Hidden: true
         ID,
         *
