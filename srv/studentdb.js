@@ -133,7 +133,7 @@ module.exports = cds.service.impl(function () {
     });
 
     
-
+    //this code only throws error but doesnot prevent transactioon from happening ,to prevent it from happening we need to add a flag
     this.before(['CREATE', 'UPDATE'], Courses, async (req) => {
         const books = req.data.Books;
 
@@ -150,17 +150,9 @@ module.exports = cds.service.impl(function () {
                 break; 
             }
         }
-    });
-
-
+    });  
     
-
-    
-    
-    
-
-
-
+     
 
     this.on('READ',Gender,async(req)=>{
                 genders=[

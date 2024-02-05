@@ -29,11 +29,15 @@ entity Student : cuid, managed {
     virtual age:Integer @Core.Computed;
     @title:'Gender Desc'
     virtual gender_description:String(10) @Core.Computed;
+    @title:'Is Alumni'
+    is_alumni:Boolean default false;
+
+    
 
 }
 
 // @mandatory makes the input mandatory
-//if the schema structure is changed redeploy usingcds deploy --to sqlite command
+//if the schema structure is changed redeploy using cds deploy --to sqlite command
 
 entity StudentLanguages: managed,cuid {
     studentid: Association to Student;
@@ -54,6 +58,12 @@ entity Courses : cuid, managed {
     code: String(3);
     @title: 'Description'
     description: String(50);
+
+    @title: 'NoS'
+    nos: Integer;
+
+    // students: Association to Student on students.course_ID = $self.ID;
+
     Books: Composition of many {
         key ID: UUID;
         bookid:Association to Books;

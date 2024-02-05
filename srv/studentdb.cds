@@ -21,7 +21,7 @@ service StudentDB {
         ID,
         *
     };
-    
+   
 
 }
 
@@ -157,6 +157,12 @@ annotate StudentDB.Courses with @(
         {
             Value: description
         },
+
+        {
+            Label : 'NoS',
+            Value: nos
+        },
+
         {
             Label : 'Course Books',
             Value: Books.bookid.description
@@ -256,6 +262,10 @@ annotate StudentDB.Student with @(
         {
             $Type : 'UI.DataField',
             Value : course.code
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : is_alumni
         },
         {
             $Type : 'UI.DataField',
