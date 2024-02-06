@@ -118,7 +118,7 @@
                     "StudentListExt": {
                       "press": "student.ext.studentListExt.StudentListExt.SetAlumni",
                       "visible": true,
-                      "enabled": true,
+                      "enabled": "student.ext.studentListExt.StudentListExt.GetAlumni",
                       "requiresSelection": true,
                       "text": "Set Alumni"
                     },

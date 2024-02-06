@@ -2,7 +2,6 @@ using {com.satinfotech.studentdb as db} from '../db/schema';
 
 service StudentDB {
     entity Student as projection on db.Student;
-    entity Student.Languages as projection on db.StudentLanguages;
     entity Gender as projection on db.Gender;
     entity Languages as projection on db.Languages{
         @UI.Hidden

@@ -24,7 +24,10 @@ entity Student : cuid, managed {
     @title:'Course'
     course : Association to Courses;
     @title: 'Languages Known'
-    Languages: Composition of many StudentLanguages on Languages.studentid = $self;
+    Languages: Composition of many {
+        key ID : UUID;
+        langid:Association to Languages;
+    }
     @title:'Age'
     virtual age:Integer @Core.Computed;
     @title:'Gender Desc'
@@ -39,10 +42,10 @@ entity Student : cuid, managed {
 // @mandatory makes the input mandatory
 //if the schema structure is changed redeploy using cds deploy --to sqlite command
 
-entity StudentLanguages: managed,cuid {
-    studentid: Association to Student;
-    langid: Association to Languages;
-}
+// entity StudentLanguages: managed,cuid {
+//     studentid: Association to Student;
+//     langid: Association to Languages;
+// }
 
 
 @cds.persistence.skip
