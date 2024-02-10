@@ -62,9 +62,7 @@ entity Courses : cuid, managed {
     @title: 'Description'
     description: String(50);
 
-    @title: 'NoS'
-    nos: Integer;
-
+    
     // students: Association to Student on students.course_ID = $self.ID;
 
     Books: Composition of many {
